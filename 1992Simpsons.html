@@ -5,6 +5,7 @@ if (!e.runIntro) {
     music.play();
     e.runIntro = true;
     }
+    RecReading=true 
   
     campaignTrail_temp.election_json = [
       {
@@ -17,13 +18,13 @@ if (!e.runIntro) {
               "image_url": "https://i.imgur.com/90fttly.png",
               "winning_electoral_vote_number": 270,
               "advisor_url": "https://i.imgur.com/EPPmELt.png",
-              "recommended_reading": "<ul>\n<li><a href=https://www.chicagotribune.com/opinion/editorials/ct-edit-chicago-tribune-biden-endorsement-20200925-lnyxsb5qvrftnjjmj3rnzj33jy-story.html>Our Case For Joe Biden</a></li>\n<li><a href=https://nationalinterest.org/feature/case-trump-166808>The Case For Trump</a></li>\n<li><a href=https://www.npr.org/2020/11/18/935730100/how-biden-won-ramping-up-the-base-and-expanding-margins-in-the-suburbs>How Biden Won: Ramping Up The Base And Expanding Margins In The Suburbs</a></li>\n<li><a href=https://www.prospectmagazine.co.uk/politics/donald-trump-joe-biden-us-election-almost-win-votes-concede>Why Did Trump Almost Win?</a></li>\n<li><a href=https://www.hoover.org/research/no-evidence-voter-fraud-guide-statistical-claims-about-2020-election>No Evidence For Voter Fraud: A Guide To Statistical Claims About The 2020 Election</a></li>\n</ul>",
+              "recommended_reading": "<h4 style='margin-top: 0.5em;'>1992: The Simpsons</h4><p>Thank you to everyone who helped make this possible, I definitely couldn't have done it without them. It been a struggle making this mod, I thought the project was dead for a while after I broke my leg, but in the summer as you may've seen we managed to rebound development with more people offering to help. And now its here! Almost a year after I first announced it. It's not the best mod so critism is welcome - but keep in mind its my first mod and its meant to be pretty basic anyway.</p><p>Thanks for playing!</p><p><em>Homer will return...</em></p><img src='https://i.imgur.com/ORKkrQr.png' width='120px'></img>",
               "has_visits": 1,
               "no_electoral_majority_image": "../static/images/2012-no-majority.jpg"
           }
       }
   ]
-  
+
   campaignTrail_temp.temp_election_list = [
       {
           "id": 9,
@@ -319,14 +320,6 @@ if (!e.runIntro) {
               "candidate": 79,
               "running_mate": 307
           }
-      },
-      {
-          "model": "campaign_trail.running_mate",
-          "pk": 112626,
-          "fields": {
-              "candidate": 79,
-              "running_mate": 308
-          }
       }
   ]
   
@@ -352,6 +345,12 @@ if (!e.runIntro) {
       }
   ]
   
+  HistHexcolour=["#002868","#ff4040","#f8db27", "#808080"];
+        HistName=["Bill Clinton","Homer Simpson","George Bush", "Others"];
+        HistEV=[405,69,64,0];
+        HistPV=["39,709,809","32,893,139","34,299,753","1,253,087"];
+        HistPVP=["36.7%","30.4%","31.7%","1.2%"];
+
   jet_data = {
       "headerColor": "#8d8600",
       "windowColor": "#fff76b",

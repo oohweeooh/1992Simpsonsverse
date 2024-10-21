@@ -6632,7 +6632,7 @@ campaignTrail_temp.answer_score_global_json = [
             "answer": 9020,
             "candidate": 79,
             "affected_candidate": 79,
-            "global_multiplier": 0.01
+            "global_multiplier": -0.001
         }
     },
     {
@@ -8740,9 +8740,82 @@ if (aa[0].electoral_votes == 538 && aa[0].candidate == 79) {
   e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/WbVeLxd.png'})])
 }
 
+// Deadlock
+if (aa[0].electoral_votes < 270 && aa[1].electoral_votes < 270 && aa[2].electoral_votes < 270) {
+  e.pages.push(`<h2>November 5th, 1992. </h2><p>Election Day. The tension in Springfield, headquarters to the largest third-party campaign America had ever seen, was palpable. Many of the town’s citizens were gathered around their televisions, anticipating a landslide which would change the course of the nation forever. </p><p>For much of the night, 742 Evergreen Terrace was no different. Marge, Maggie, Lisa, and even Bart Simpson had attentively observed the election coverage before retiring for the night, the results made clear that nobody would win a majority. </p><p>And then there was Homer. The local buffoon-turned national phenomenon sat alone in his living room, his hands clasped, his eyes fixated on Kent Brockman as Springfield’s favorite newscaster pointed towards an electoral map. </p><p>”Well, things aren’t final yet, and it doesn't look like they will be for quite some time. However, don't let that take away from a historic showing for our hometown hero, Homer Simpson.” </p><p>Simpson had known for at least an hour now that the winner would not be chosen tonight, and yet he still couldn't bring himself to walk away from his television and go to sleep. So, he waited. And waited. And waited. </p><p>And he'd wait some more, staying up the entire night, but to no avail. The election was in a deadlock. </p><p> Because of this deadlock, Lisa explained, the House of Representatives would have to vote on who would become president. After a brief conversation with his family, Homer decided to buy a plane ticket to D.C for the 8th, just one day before the House was to vote on the matter. </p><p>As Homer descended his front steps before heading to his car, he was stopped by his wife. Marge considered pleading, begging almost, for him not to go. For him not to make a fool of himself. </p><p>After a quick hug and peck on the lips, she looked into his eyes. She knew that her husband couldn't name a single U.S Representative, and that he didn’t understand just how little time he had to sway any votes. </p><p>But she also knew how important to him this was. </p><p>"Homie... good luck. I love you." </p>`)
+  e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/q05z9NC.png'})])
+}
+
 return construct(0);
   
 }
+
+vpTable = {
+    "Bill Clinton" : "Al Gore",
+    "Homer Simpson" : "Joe Quimby",
+    "George Bush" : "Dan Quayle",
+}
+
+vpTableHistorical = {
+    "Bill Clinton" : "Al Gore",
+    "Homer Simpson" : "Joe Quimby",
+    "George Bush" : "Dan Quayle",
+    "Others" : "N/A",
+  } 
+
+function onGameWindowChangeCandidates() {
+        const resultsTableHolder = document.getElementById("overall_details_container");
+
+        if(!resultsTableHolder || resultsTableHolder.classList.contains("done")) {
+            return;
+        }
+
+        resultsTableHolder.classList.add("done");
+
+        const resultsTable = resultsTableHolder.childNodes[3].childNodes[3].children[0];
+        
+        for(let i = 0; i < resultsTable.children.length; i++) {
+            const row = resultsTable.children[i];
+            let name = row.firstChild.innerText;
+            row.insertCell(1);
+            if(name) {
+                name = name.replaceAll("-", "").trim();
+                console.log("name is:" + name)
+            }
+
+            if(i == 0) {
+                row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
+            }
+            else {
+                row.children[1].innerHTML = vpTable[name];
+            }
+        }
+
+        
+        const resultsTableHistorical = resultsTableHolder.childNodes[5].childNodes[3].children[0];
+        
+        for(let i = 0; i < resultsTableHistorical.children.length; i++) {
+            const row = resultsTableHistorical.children[i];
+            let name = row.childNodes[1].innerText;
+            row.insertCell(1);
+            if(name) {
+                name = name.replaceAll("-", "").trim();
+            }
+
+            if(i == 0) {
+                row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
+            }
+            else {
+                row.children[1].innerHTML = vpTableHistorical[name];
+            }
+        }
+}
+
+const gameWindowNode = document.getElementById("game_window");
+const candidateWatcherConfig = { attributes: true, childList: true, subtree: true };
+
+const candidateObserver = new MutationObserver(onGameWindowChangeCandidates);
+candidateObserver.observe(gameWindowNode, candidateWatcherConfig);
 
 // Initialise custom music
 
@@ -8935,7 +9008,7 @@ function newMusicPlayer() {
     buttons[newSel].click()
   }
 
-  for (w = 0; w < 7; w++) {
+  for (l = 0; l < 7; l++) {
     document.getElementById("trackSelParent").appendChild(document.createElement("br"))
   }
   
