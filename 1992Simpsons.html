@@ -45,6 +45,27 @@ if (!e.runIntro) {
     alert(text)
   }
   
+  // Select the node that will be observed for mutations
+const windowsAdvisorTargetNode = document.getElementById("game_window");
+
+// Options for the observer (which mutations to observe)
+const windowsAdvisorConfig = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList, observer) => {
+    visitWindow = document.getElementsByClassName("overlay_window")[0];
+
+    if(visitWindow == null || visitWindow.classList.contains("done")) {
+        return;
+    }
+    visitWindow.classList.add("done");
+    visitWindow.classList.add("window");
+    let titleBar = visitWindow.querySelector("h3");
+    titleBar.classList.add("title-bar");
+    titleBar.classList.add("title-bar-text")
+    titleBar.style.paddingLeft = "3px";
+};
+
   campaignTrail_temp.global_parameter_json = [
       {
           "model": "campaign_trail.global_parameter",
@@ -71,6 +92,29 @@ if (!e.runIntro) {
   ]
   
   campaignTrail_temp.candidate_json = [
+      {
+    "model": "campaign_trail.candidate",
+    "pk": 79,
+    "fields": {
+        "first_name": "Homer",
+        "last_name": "Simpson",
+        "election": 9,
+        "party": "Independent",
+        "state": "Oregon",
+        "priority": 1,
+        "description": "<div style='max-height: 300px; overflow-y: auto;'>Anyone paying attention sees this election for what it is: a disgraceful sham.</p><p>Homer Simpson works at a local nuclear power plant in Springfield, a family man. He never sought the Presidency, but as his nation is in it's hour of need, he has stepped up to the challe- Nah, he's only here because his son, Bart, filled out the paperwork for a Presidential run as a prank. Still, after some convincing from his family and the fact that that old Wimp is trying to get re-elected, Homer has decided that he will stay in the race, and give it his all.</p><p>Homer was born in 1956, and although he doesn't look it, he would become the youngest President in history if elected, which is likely gonna be a theme of his opponents attacks. Not to mention his alcoholism and love of food making him seem unpresidential (which to be fair, he is). Yet, his biggest issues is actually forming a campaign, as of now he'd be lucky to get half of Lyndon LaRouche's PV. Homer needs to use whatever connections he has to unite people from the left and right to finally end the disgrace that is the two party system.</p>",
+        "color_hex": "#f8db27",
+        "secondary_color_hex": null,
+        "is_active": 1,
+        "image_url": "https://i.imgur.com/FBdX3Wu.gif",
+        "electoral_victory_message": "<h3>Congratulations! You have won the 1992 election.</h3><p>This was definitely not supposed to happen. Good luck!</p>",
+        "electoral_loss_message": "<h3>As expected, you have lost the 1992 election.</h3><p>The legacy of this campaign depends on a couple of factors. First of all, did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 1996 and present a true choice to the American people. Also, the Democrats were a little peeved that you \\\\\\\"stole\\\\\\\" votes from them in this election. Hopefully that doesn't lead to a backlash.</p>",
+        "no_electoral_majority_message": "<h3>Wow! No candidate received 270 electoral votes, but the House will elect George W. Bush as President.</h3><p>Did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 1996 and present a true choice to the American people. Also, the Democrats were a little peeved that you \\\\\\\"stole\\\\\\\" votes from them in this election. Hopefully that doesn't lead to a backlash, especially since they will lose the vote in the House.</p>",
+        "description_as_running_mate": null,
+        "candidate_score": 1,
+        "running_mate": false
+          }
+      },
       {
           "model": "campaign_trail.candidate",
           "pk": 77,
@@ -207,29 +251,6 @@ if (!e.runIntro) {
               "description_as_running_mate": "<p>Horace Wilcox couldn't be a more dedicated public servant, he has served in congress as representative since 1933 and was a historic survivor of the Titanic disaster. He is a traditional New Deal Democrat, additionally he could make Clinton's campaign come over as more experienced.</p>\n            \n            However his age could pose significant issue to the campaign with many people saying he is too old to representative, let alone Vice-President with Wilcox being 94. His big government views could also clash with Clinton's Third Way ideas.",
               "candidate_score": 1,
               "running_mate": true
-          }
-      },
-      {
-          "model": "campaign_trail.candidate",
-          "pk": 79,
-          "fields": {
-              "first_name": "Homer",
-              "last_name": "Simpson",
-              "election": 9,
-              "party": "Independent",
-              "state": "Oregon",
-              "priority": 1,
-              "description": "<div style='max-height: 300px; overflow-y: auto;'>Anyone paying attention sees this election for what it is: a disgraceful sham.</p><p>Homer Simpson works at a local nuclear power plant in Springfield, a family man. He never sought the Presidency, but as his nation is in it's hour of need, he has stepped up to the challe- Nah, he's only here because his son, Bart, filled out the paperwork for a Presidential run as a prank. Still, after some convincing from his family and the fact that that old Wimp is trying to get re-elected, Homer has decided that he will stay in the race, and give it his all.</p><p>Homer was born in 1956, and although he doesn't look it, he would become the youngest President in history if elected, which is likely gonna be a theme of his opponents attacks. Not to mention his alcoholism and love of food making him seem unpresidential (which to be fair, he is). Yet, his biggest issues is actually forming a campaign, as of now he'd be lucky to get half of Lyndon LaRouche's PV. Homer needs to use whatever connections he has to unite people from the left and right to finally end the disgrace that is the two party system.</p>",
-              "color_hex": "#f8db27",
-              "secondary_color_hex": null,
-              "is_active": 1,
-              "image_url": "https://i.imgur.com/FBdX3Wu.gif",
-              "electoral_victory_message": "<h3>Congratulations! You have won the 1992 election.</h3><p>This was definitely not supposed to happen. Good luck!</p>",
-              "electoral_loss_message": "<h3>As expected, you have lost the 1992 election.</h3><p>The legacy of this campaign depends on a couple of factors. First of all, did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 1996 and present a true choice to the American people. Also, the Democrats were a little peeved that you \\\\\\\"stole\\\\\\\" votes from them in this election. Hopefully that doesn't lead to a backlash.</p>",
-              "no_electoral_majority_message": "<h3>Wow! No candidate received 270 electoral votes, but the House will elect George W. Bush as President.</h3><p>Did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 1996 and present a true choice to the American people. Also, the Democrats were a little peeved that you \\\\\\\"stole\\\\\\\" votes from them in this election. Hopefully that doesn't lead to a backlash, especially since they will lose the vote in the House.</p>",
-              "description_as_running_mate": null,
-              "candidate_score": 1,
-              "running_mate": false
           }
       },
       {
@@ -412,6 +433,38 @@ if (!e.runIntro) {
   footer.insertBefore(button, footer.firstChild);
   button.onclick = changeBanner;
   
+  e = campaignTrail_temp
+
+const startScreenUpdater = setInterval(function() {
+	const goBackButton = document.getElementById("candidate_id_back");
+	const candidateButton = document.getElementById("candidate_id_button");
+	const runningMateButton = document.getElementById("running_mate_id_button");
+	const finalScreenBB = document.getElementById("opponent_selection_id_back");
+	const finalScreenID = document.getElementById("opponent_selection_id_button");
+    const difficultySlider = document.getElementById("difficulty_level");
+    const gameType = document.getElementById("game_type_id");
+
+    
+    if((candidateButton || c != 0)&& !runningMateButton){ // change theme on candidate viewing
+		var c = document.getElementById("candidate_id").value;
+		if(c == 79 && !(candidateButton) && !(runningMateButton)) {
+            goBackButton.click();
+            const initContinue = document.getElementById("election_id_button");
+            initContinue.click();
+		}
+		else if(c == 78 || c == 77) {
+            if(candidateButton) {
+                candidateButton.remove();
+            }
+		}
+	}
+
+	if(finalScreenID) { // delete back button and delete the interval
+		finalScreenBB.remove();
+		clearInterval(startScreenUpdater);
+	}
+}, 1);
+
   function addDynamicCSS() {
     var css = `
         .inner_window_question h3 .mytooltip{
