@@ -7,13 +7,23 @@ if (!e.runIntro) {
     }
     RecReading=true 
   
+    campaignTrail_temp.modBoxTheme = {
+        "header_color": "#fff76b",
+        "header_text_color": "#000000",
+        "description_text_color": "#000000",
+        "description_background_color": "#81caf4",
+        "main_color": "#81caf4",
+        "secondary_color": "#8d8600",
+        "ui_text_color": "#FFFFFF"
+   }
+
     campaignTrail_temp.election_json = [
       {
           "model": "campaign_trail.election",
           "pk": 9,
           "fields": {
-              "year": 2016,
-              "display_year": "1992Simpsons",
+              "year": 1992,
+              "display_year": "1992 The Simpsons",
               "summary": "<p>Only some people can be President. Those of a small elite. Who have had years of political experience and are practically married by god to the establishment. This election seals this narrative. A scandal ridden Governor with deep ties to the establishment of his party versus a foreign policy mad President who seems to forget the concept of domestic issues. George Bush's success as President is as hollow as his promises. Rising unemployment, rising healthcare costs and American workers being undermined with NAFTA.</p><p>There seems to be a hole in the political conscience, as if America is longing for a change of the two party monopoly. But the Presidency isn't just for any dumbo that works 9 to 5 at a below average level and is slightly overweight, right? D'oh!</p>",
               "image_url": "https://i.imgur.com/90fttly.png",
               "winning_electoral_vote_number": 270,
@@ -28,16 +38,16 @@ if (!e.runIntro) {
   campaignTrail_temp.temp_election_list = [
       {
           "id": 9,
-          "year": 2016,
+          "year": 1992,
           "is_premium": 0,
-          "display_year": "1992"
+          "display_year": "1992 The Simpsons"
       }
   ]
   
   campaignTrail_temp.credits = "<button onclick='credits()'>scottishbozo</button>"
   
   credits = function() {
-    credits = [ "Lead: scottishbozo", "Coding Help: oohweeooh, NoAccess", "Writing Help: FireWizard, senz", "Playtesters: b.f. bache"]
+    credits = [ "Lead: scottishbozo", "Coding Help: oohweeooh, NoAccess", "Writing Help: FireWizard, senz", "Playtesters: b.f. bache", "All credits to Jet for the mod tools, and Decstar for the music player."]
     text = "CREDITS:\n\n"
     for (i in credits) {
         text += credits[i] + "\n"
@@ -524,8 +534,8 @@ const startScreenUpdater = setInterval(function() {
   
   tooltipList = [
     {searchString: "Bush", explanationText: "<img src=https://i.imgur.com/ijao8c1.jpeg> Wimp"},
-    {searchString: "Clinton", explanationText: "<img src=https://i.imgur.com/xYDlcBy.jpeg> Degenerate"},
-    {searchString: "Clinton's", explanationText: "<img src=https://i.imgur.com/xYDlcBy.jpeg> Degenerate"},
+    {searchString: "Clinton", explanationText: "<img src=https://i.imgur.com/rMY2iTi.png> Degenerate"},
+    {searchString: "Clinton's", explanationText: "<img src=https://i.imgur.com/rMY2iTi.png> Degenerate"},
     {searchString: "Quayle", explanationText: "<img src=https://i.imgur.com/GGzcYUk.png> POTATOE"},
     {searchString: "Gore", explanationText: "<img src=https://i.imgur.com/3W9YbaW.png> BORRING"},
     {searchString: "Perot", explanationText: "<img src=https://i.imgur.com/4HKVhFQ.png> My big eared friend"},
